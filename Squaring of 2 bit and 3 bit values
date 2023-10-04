@@ -1,0 +1,22 @@
+module twobitsquare(input [1:0]A,output [3:0]P);
+wire w1;
+assign P[0]=A[0];
+assign P[1]=0;
+assign w1=A[1]&A[0];
+halfadder h1(A[1],w1,P[2],P[3]);
+endmodule
+
+module threebitsquare(input [2:0]A,output [5:0]P);
+wire w1;
+assign P[0]=A[0];
+assign P[1]=0;
+assign P[2]=A[1]&~A[0];
+halfadder h2(A[2],A[1],w1,P[5]);
+assign P[3]=A[0]&w1;
+assign P[4]=A[2]&~P[2];
+endmodule
+
+module halfadder(input a,b,output sum,carry);
+assign sum=a^b;
+assign carry=a&b;
+endmodule
