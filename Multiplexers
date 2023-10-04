@@ -1,0 +1,12 @@
+module multiplexers(input a,b,c,d,e,f,g,h,s0,s1,s2, output o1,o2);
+mux4to1 m1(a,b,c,d,s0,s1,o1);
+mux8to1 m2(a,b,c,d,e,f,g,h,s0,s1,s2,o2);
+endmodule
+
+module mux4to1(input a,b,c,d,s0,s1,output o);
+assign o=(a&~s0&~s1)|(b&~s0&s1)|(c&s0&~s1)|(d&s0&s1);
+endmodule
+
+module mux8to1(input a,b,c,d,e,f,g,h,S0,S1,S2, output o);
+assign o=(a&~S0&~S1)|(b&~S0&~S1&S2)|(c&~S0&S1&~S2)|(d&~S0&S1&S2)|(e&S0&~S1&~S2)|(f&S0&~S1&S2)|(g&S0&S1&~S2)|(h&S0&~1&S2);
+endmodule
