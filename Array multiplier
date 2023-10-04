@@ -1,0 +1,16 @@
+module arraymultiplier(input [3:0]a,b,output [7:0]p);
+wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17;
+and a1(p[0],a[0],b[0]);
+halfadder h1(a[1]&b[0],a[0]&b[1],p[1],w1);
+fulladder f1(w1,a[1]&b[1],a[2]&b[0],w2,w3);
+halfadder h2(w2,a[0]&b[2],p[2],w4);
+fulladder f2(w3,a[1]&b[2],a[3]&b[0],w5,w7);
+fulladder f3(w5,a[2]&b[1],w4,w6,w8);
+halfadder h3(w6,a[0]&b[3],p[3],w9);
+fulladder f4(w7,a[1]&b[3],w8,w10,w12);
+fulladder f5(w10,w9,a[2]&b[2],w11,w13);
+halfadder h4(w11,a[3]&b[1],p[4],w14);
+fulladder f6(w12,w13,a[2]&b[3],w15,w16);
+fulladder f7(w15,w14,a[3]&b[2],p[5],w17);
+fulladder f8(w16,w17,a[3]&b[3],p[6],p[7]);
+endmodule
