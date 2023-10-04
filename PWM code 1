@@ -1,0 +1,29 @@
+module pwm_main(input clk,rst,input [7:0]i,output pwm_out);
+wire a,d,ov,q;
+always @(posedge clk);
+comparator c1(i,q,a);
+add a1(q,d,ov);
+dff d1(d,clk,rst,q);
+mux m1(0,1,a,pwm_out);
+endmodule
+
+module comparator(input [7:0]in1,in2,output reg gt);
+always @ (in1 or in2)
+gt<=(in1>in2)?1'b1:1'b0; 
+endmodule
+
+module add(input a,output sum,carry);
+assign {carry,sum}=a+1'b1;
+endmodule
+
+module dff(input d,rst,clk, output reg q);
+always @(posedge clk or negedge rst)
+if(!rst)
+q<=0;
+else
+q<=d;
+endmodule
+
+module mux(input d0,d1,s,output a);
+assign a=(~s&d0)|(s&d1);
+endmodule
