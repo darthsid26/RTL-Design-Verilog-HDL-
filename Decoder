@@ -1,0 +1,17 @@
+module decoder2to4(input a,b,output d0,d1,d2,d3);
+assign d0=~a&~b;
+assign d1=~a&b;
+assign d2=a&~b;
+assign d3=a&b;
+endmodule
+
+module decoder3to8(input s[0:2],output d[0:7]);
+assign d[0]=~s[0]&~s[1]&~s[2];
+assign d[1]=~s[0]&~s[1]&s[2];
+assign d[2]=~s[0]&s[1]&~s[2];
+assign d[3]=~s[0]&s[1]&s[2];
+assign d[4]=s[0]&~s[1]&~s[2];
+assign d[5]=s[0]&~s[1]&s[2];
+assign d[6]=s[0]&s[1]&~s[2];
+assign d[7]=s[0]&s[1]&s[2];
+endmodule  
