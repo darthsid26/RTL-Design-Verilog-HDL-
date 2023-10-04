@@ -1,0 +1,15 @@
+module fullsub_decoder(input a,b,c, output diff,borrow);
+wire d1,d2,d3,d4,x,k1,k2,k3,k4;
+decoder de1(a,b,k1,d1,d2,k2);
+or o1(x,d1,d2);
+decoder de2(x,c,k3,d3,d4,k4);
+or o2(diff,d3,d4);
+or o3(borrow,d1,d3);
+endmodule
+
+module decoder(input a,b,output d1,d2,d3,d4);
+assign d1=~a&~b;
+assign d2=~a&b;
+assign d3=a&~b;
+assign d4=a&b;
+endmodule
